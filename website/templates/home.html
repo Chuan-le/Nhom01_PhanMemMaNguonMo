@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+
+
+<h1 align="center">Ghi chú</h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-book-open mr-3"></i>
+            <p class="m-0" style="font-size:18px;">{{ note.data }}</p>
+        </div>
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+        <span aria-hidden="true" style="color: red;">&times;</span>
+      </button>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST" class="mt-2">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Thêm ghi chú</button>
+    </div>
+</form>
+
+{% endblock %}
